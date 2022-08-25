@@ -39,7 +39,7 @@ const batch = [
 
 // Add your functions below:
 
-const validateCred = credNumber => {
+const validateCred = (credNumber) => {
   let sum = 0;
   for (let i = credNumber.length - 1; i >= 0; i--) {
     if (i % 2 !== 0) {
@@ -54,57 +54,68 @@ const validateCred = credNumber => {
       }
     }
   }
-  if (sum%10 === 0){
-    return 'Valid';
+  if (sum % 10 === 0) {
+    return "Valid";
   } else {
-    return 'InValid';
+    return "InValid";
   }
 };
 
-const findInvalidCards = nestArray => {
+const findInvalidCards = (nestArray) => {
   const invalidArrays = [];
-  for (let i = 0; i < nestArray.length; i++){
-    if (validateCred(nestArray[i]) === 'InValid'){
+  for (let i = 0; i < nestArray.length; i++) {
+    if (validateCred(nestArray[i]) === "InValid") {
       invalidArrays.push(`${nestArray[i]}: InValid`);
     }
   }
   console.log(invalidArrays);
-}
+};
 
-const idInvalidCardCompanies = nestArray => {
+const idInvalidCardCompanies = (nestArray) => {
   const companyArray = [];
-   for (let i = 0; i < nestArray.length; i++){
-     switch (nestArray[i][0]) {
-       case 2:
-       if (!companyArray.includes('Mastercard')){
-       companyArray.push('Mastercard');
-       }
-       case 3:
-       if (!companyArray.includes('Amex (American Express)')){
-       companyArray.push('Amex (American Express)');
-       }
-       break;
-       case 4:
-       if (!companyArray.includes('Visa')){
-       companyArray.push('Visa');
-       }
-       break;
-       case 5:
-       if (!companyArray.includes('Mastercard')){
-       companyArray.push('Mastercard');
-       }
-       break;
-       case 6:
-       if (!companyArray.includes('Discover')){
-       companyArray.push('Discover');
-       }
-       break;
-       default:
-       console.log('Company not found');
-       break;
-     }
-   }
-   console.log(companyArray);
-}
+  for (let i = 0; i < nestArray.length; i++) {
+    switch (nestArray[i][0]) {
+      case 2:
+        if (!companyArray.includes("Mastercard")) {
+          companyArray.push("Mastercard");
+        }
+      case 3:
+        if (!companyArray.includes("Amex (American Express)")) {
+          companyArray.push("Amex (American Express)");
+        }
+        break;
+      case 4:
+        if (!companyArray.includes("Visa")) {
+          companyArray.push("Visa");
+        }
+        break;
+      case 5:
+        if (!companyArray.includes("Mastercard")) {
+          companyArray.push("Mastercard");
+        }
+        break;
+      case 6:
+        if (!companyArray.includes("Discover")) {
+          companyArray.push("Discover");
+        }
+        break;
+      default:
+        if (!companyArray.includes("Company not found")) {
+          console.log("Company not found");
+        }
+        break;
+    }
+  }
+  console.log(companyArray);
+};
 
-idInvalidCardCompanies(batch);
+const convertString = (string) => {
+  const newArray = [];
+  for (let i of string) {
+    newArray.push(parseInt(i));
+  }
+  return newArray;
+};
+
+let newCompany = convertString("4532507768447651");
+console.log(newCompany);
