@@ -41,25 +41,22 @@ const batch = [
 
 const validateCred = (credNumber) => {
   let sum = 0;
-  for (let i = credNumber.length - 1; i >= 0; i--) {
-    if (i % 2 !== 0) {
-      sum += credNumber[i];
-    } else {
-      let n = credNumber[i] * 2;
-      if (n > 9) {
-        n = n - 9;
-        sum += n;
-      } else {
-        sum += n;
+  for (let i = credNumber.length-1; i >= 0; i--){
+    let n = credNumber[i];
+    if(i % 2 === ((credNumber.length) % 2)){
+      n *= 2;
+      if (n > 9){
+        n -= 9
       }
+      sum += n;  
+    }else{
+      sum += n;
     }
   }
-  if (sum % 10 === 0) {
-    return "Valid";
-  } else {
-    return "InValid";
-  }
-};
+  return (sum % 10 === 0) ? 'Valid' : 'Invalid';
+  };
+
+
 
 const findInvalidCards = (nestArray) => {
   const invalidArrays = [];
@@ -116,6 +113,3 @@ const convertString = (string) => {
   }
   return newArray;
 };
-
-let newCompany = convertString("4532507768447651");
-console.log(newCompany);
